@@ -58,9 +58,7 @@ Item::Item(QClipboard::Mode mode)
     //    application, so naturally closing the application drops
     //    clipboard content. In this case the latest item should be set again.
     if (mimeData->formats().count() == 0)
-    {
         m_valid = false;
-    }
 
     //Note: reading all provided image/.*bmp data can make gimp crash
     //  workadound until someone fixes this in gimp -> just read/store only the image/bmp
@@ -149,9 +147,7 @@ QClipboard::Mode Item::clipBoardMode() const
 void Item::toClipboard(const Actions & actions) const
 {
     if (!(actions & (ToCurrent | ToOther)))
-    {
         return;
-    }
 
     ClipboardWrap * clipboard = ClipboardWrap::Instance();
 
@@ -197,9 +193,7 @@ QString Item::displayRole() const
 QIcon Item::decorationRole() const
 {
     if (!Preferences::Instance()->platformExtensions())
-    {
         return iconForContentType();
-    }
 
     QPixmap pm;
     QString cacheKey = u"%1_%2"_s.arg(m_contentType).arg(m_mode);
